@@ -42,6 +42,8 @@ int main(void){
 ******************************************************/
 int linear_search(int mat[], int key){
     int i;
+    mat[SIZE+1] = key;
+
     for ( i = 0; i < SIZE; i++){
         if (mat[i] == key){
             break;
