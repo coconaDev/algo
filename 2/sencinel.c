@@ -23,6 +23,9 @@ int main(void){
 		max = makeData(data);	/*データ配列の生成*/
 
 		key = rand() % (int)(SIZE * 1.1);
+
+        // 番兵の設置
+        data[SIZE] = key;
 		no = linear_search(data, key);
 
 		total += no;
@@ -41,13 +44,13 @@ int main(void){
 * @return	number of searching
 ******************************************************/
 int linear_search(int mat[], int key){
-    int i;
-    mat[SIZE+1] = key;
+    int i=0;
 
-    for ( i = 0; i < SIZE; i++){
-        if (mat[i] == key){
-            break;
-        }
+    while (mat[i] != key){
+        i++;
+    }
+    if (i == SIZE){
+        printf("番兵でした\n");
     }
     return (i);
 }
