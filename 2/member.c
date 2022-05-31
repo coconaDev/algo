@@ -2,7 +2,6 @@
 #include <string.h>
 
 int makeData(int mat[]);
-void sh
 
 struct tag{
     int id;
@@ -19,7 +18,7 @@ int main (void){
     fp = fopen("member.csv", "r");
     if(fp == NULL){
         printf("file io error!\n");
-        exit(ECIT_FAILURE);
+        exit(EXIT_FAILURE);
     }
 
     i=0;
