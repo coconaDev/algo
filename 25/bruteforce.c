@@ -28,9 +28,8 @@ int brute_force_search(char *text, int txt_len, char *pattern, int pt_len) {
       // パターンの次の文字を比較するため，iとjをインクリメント
       i++;
       j++;
-    }
-    // 一致しない場合
-    else {
+      // 一致しない場合
+    } else {
       i = i - j + 1;  // 途中までチェックしていたことを考慮
       // パターンのチェック位置は０にする．
       j = 0;
