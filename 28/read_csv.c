@@ -17,7 +17,6 @@ int main(void)
 	//項目行の読み捨て
 	fgets(buf, sizeof(buf), fp);
 	
-	
 	while (fgets(buf, sizeof(buf), fp) != NULL){
 		sscanf(buf, "%f,%f,%f,%f,%f,%f,%s", &a, &b, &c, &d, &e, &f, city);
 		printf("---------------------------------\n");
