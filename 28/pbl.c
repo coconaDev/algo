@@ -19,7 +19,8 @@ struct DATA{
 struct DATA m[ELEMENTS];
 
 // プロトタイプ宣言
-void strageData();
+void strageData(void);
+char* choise();
 void serch();
 void sort();
 void show();
@@ -31,7 +32,7 @@ int main(void){
   int input;
   while (1){
     printf("----------選択してください-------------\n");
-    printf("1 : 検索\n");
+    printf("1 : 市区町村で検索\n");
     printf("2 : ソートして表示\n");
     printf("コマンド：");
 
@@ -39,7 +40,9 @@ int main(void){
 
     switch (input){
       case 1:
-        serch();
+        char* select = choise();
+        serch(select);
+        printf("%s", &select);
         break;
       case 2:
         sort();
@@ -53,6 +56,34 @@ int main(void){
   }
 
   return 0;
+}
+
+void serch(){
+}
+void sort(){
+}
+void show(){
+  // 選択した項目を表示するようにする
+  for (int i = 0; i < ELEMENTS; i++){
+    printf("%s:%g\n", m[i].city, m[i].age);
+  }
+}
+
+char* choise(void){
+  char* select = NULL;
+  while (1){
+    printf("市区町村名：");
+
+    scanf("%s", &select);
+
+    select = (char *)malloc(sizeof(char) * 50);
+
+    if (select == NULL){
+        printf("配列作成失敗\n");
+    }
+    printf("%s", &select);
+    return select;
+  }
 }
 void strageData(){
   char buf[300];
@@ -74,14 +105,4 @@ void strageData(){
     i++;
   }
   fclose(fp);
-}
-void serch(){
-}
-void sort(){
-}
-void show(){
-  // 選択した項目を表示するようにする
-  for (int i = 0; i < ELEMENTS; i++){
-    printf("%s:%g\n", m[i].city, m[i].age);
-  }
 }
