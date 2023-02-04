@@ -19,16 +19,15 @@ struct DATA{
 struct DATA m[ELEMENTS];
 
 // プロトタイプ宣言
-void strageData(void);
-char* choise();
+void strageData();      // データの読み込み
+char *isCityName(); // 都市名を入力
 void serch();
 void sort();
 void show();
 
 int main(void){
-  // データの読み込み
   strageData();
-  // メニュー読み込み
+  // メニュー選択
   int input;
   while (1){
     printf("----------選択してください-------------\n");
@@ -40,9 +39,7 @@ int main(void){
 
     switch (input){
       case 1:
-        char* select = choise();
-        serch(select);
-        printf("%s", &select);
+        char *str = isCityName();
         break;
       case 2:
         sort();
@@ -62,27 +59,17 @@ void serch(){
 }
 void sort(){
 }
+char *isCityName(){
+  static char str[50];
+  printf("検索する市町村名：");
+  scanf("%s", str);
+
+  return str;
+}
 void show(){
   // 選択した項目を表示するようにする
   for (int i = 0; i < ELEMENTS; i++){
     printf("%s:%g\n", m[i].city, m[i].age);
-  }
-}
-
-char* choise(void){
-  char* select = NULL;
-  while (1){
-    printf("市区町村名：");
-
-    scanf("%s", &select);
-
-    select = (char *)malloc(sizeof(char) * 50);
-
-    if (select == NULL){
-        printf("配列作成失敗\n");
-    }
-    printf("%s", &select);
-    return select;
   }
 }
 void strageData(){
@@ -101,7 +88,7 @@ void strageData(){
   
   int i = 0;
   while (fgets((buf), sizeof(buf), fp) != NULL){
-    sscanf(buf, "%f,%f,%f,%f,%f,%f,%s", &m[i].area, &m[i].population, &m[i].rate, &m[i].age, &m[i].unemployment, &m[i].income, &m[i].city);
+    sscanf(buf, "%f,%f,%f,%f,%f,%f,%s", &m[i].area, &m[i].population, &m[i].rate, &m[i].age, &m[i].unemployment, &m[i].income, m[i].city);
     i++;
   }
   fclose(fp);
