@@ -73,12 +73,18 @@ void selectSort(int item, int sort){
   }
 
   for ( i = 0; i < ELEMENTS; i++){
-    for ( int j = 0; j < ELEMENTS; j++){
-      if (max < p[j]){
-        a
-      }
+    int maxValue = 0;
+    for (int j = 0; j < ELEMENTS; j++){
+        if (maxValue < p[j]){
+          maxValue = p[j];
+          max = j;
+        }
     }
+    temp = m[i];
+    m[i] = m[max];
+    m[max] = temp;
   }
+  return 0;
 }
 int isItem(){
   int item, sort;
