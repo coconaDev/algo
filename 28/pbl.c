@@ -47,7 +47,7 @@ int main(void){
       case 2:
         int item, sort = isItem();
         selectSort(item, sort);
-        showList();
+        // showList();
         break;
       default:
         printf("\n数字を入力してください");
@@ -77,11 +77,11 @@ void selectSort(int item, int sort){
   default:break;
   }
 
-  for ( i = 0; i < ELEMENTS; i++){
-    int maxValue = 0;
-    for (int j = 0; j < ELEMENTS; j++){
-        if (maxValue < p[j]){
-          maxValue = p[j];
+
+  for ( i = 0; i < ELEMENTS-1; i++){
+    int max = i;
+    for (int j = i; j < ELEMENTS; j++){
+        if (p[max] < p[j]){
           max = j;
         }
     }
