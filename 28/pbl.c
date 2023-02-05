@@ -22,10 +22,10 @@ struct DATA m[ELEMENTS];
 void strageData();      // データの読み込み
 char *isCityName(); // 都市名を入力
 int search();   // マッチ
+void show();
 int isItem();   // ソート項目とソート順の入力
 void selectSort();  // 選択ソート
-void show();
-
+void showList();
 int main(void){
   strageData();
   // メニュー選択
@@ -47,7 +47,7 @@ int main(void){
       case 2:
         int item, sort = isItem();
         selectSort(item, sort);
-        // show();
+        showList();
         break;
       default:
         printf("\n数字を入力してください");
@@ -56,6 +56,11 @@ int main(void){
     printf("\n");
   }
   return 0;
+}
+void showList(){
+  for (int i = 0; i < ELEMENTS; i++){
+    printf("%s:%.2f\n", m[i].city, m[i].area);
+  }
 }
 void selectSort(int item, int sort){
   int max = 0, i = 0;
@@ -84,7 +89,6 @@ void selectSort(int item, int sort){
     m[i] = m[max];
     m[max] = temp;
   }
-  return 0;
 }
 int isItem(){
   int item, sort;
