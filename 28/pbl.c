@@ -47,7 +47,7 @@ int main(void){
       case 2:
         int item, sort = isItem();
         selectSort(item, sort);
-        // showList();
+        showList();
         break;
       default:
         printf("\n数字を入力してください");
@@ -64,27 +64,16 @@ void showList(){
 }
 void selectSort(int item, int sort){
   int max = 0, i = 0;
-  int *p; // ソートする構造体メンバのポインタ
   struct DATA temp;
 
-  switch (item){  // 項目番号から構造体メンバを指定
-  case 1: p[i] = m[i].area;
-  case 2: p[i] = m[i].population;
-  case 3: p[i] = m[i].rate;
-  case 4: p[i] = m[i].age;
-  case 5: p[i] = m[i].income;
-  case 6: p[i] = m[i].unemployment;
-  default:break;
-  }
-
-
-  for ( i = 0; i < ELEMENTS-1; i++){
+  for ( i = 0; i < ELEMENTS; i++){
     int max = i;
     for (int j = i; j < ELEMENTS; j++){
-        if (p[max] < p[j]){
-          max = j;
-        }
+      if(m[max].area < m[j].area){
+        max = j;
+      }
     }
+    printf("%d. %s:%.2f -> %s: %.2f\n", i, m[max].city, m[max].area, m[i].city, m[i].area);
     temp = m[i];
     m[i] = m[max];
     m[max] = temp;

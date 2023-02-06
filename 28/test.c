@@ -1,17 +1,20 @@
 #include<stdio.h>
 #include<string.h>
 
-char *input(void){
-  static char str[BUFSIZ];
-  fgets(str, 50, stdin);
-  return str;
-}
+struct test{
+  int id;
+  char name[20];
 
-int main (void){
-  printf("入力:");
+};
 
-  char* str = input();
-  printf("%s\n", str);
+struct test ps[2] ={
+  {0, "aaa"},
+  {1, "bbb"}
+};
 
-  return 0;
+
+int main(void){
+  char *access[2] = {ps[0].id, ps[1].name};
+
+  printf("%s", access[0]);
 }
