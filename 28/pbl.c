@@ -45,9 +45,10 @@ int main(void){
         show(num);
         break;
       case 2:
-        int item, sort = isItem();
+        int item = 0, sort = 0;
+        isItem(&item, &sort);
         selectSort(item, sort);
-        showList();
+        showList(item);
         break;
       default:
         printf("\n数字を入力してください");
@@ -57,49 +58,96 @@ int main(void){
   }
   return 0;
 }
-void showList(){
+void showList(int item){
   for (int i = 0; i < ELEMENTS; i++){
-    printf("%s:%.2f\n", m[i].city, m[i].area);
+    printf("%s:", m[i].city);
+    switch (item){
+    case 1:
+      printf("%.2f\n", m[i].area);
+      break;
+    case 2:
+      printf("%.2f\n", m[i].population);
+      break;
+    case 3:
+      printf("%.2f\n", m[i].rate);
+      break;
+    case 4:
+      printf("%.2f\n", m[i].age);
+      break;
+    case 5:
+      printf("%.2f\n", m[i].unemployment);
+      break;
+    case 6:
+      printf("%.2f\n", m[i].income);
+      break;
+    
+    default:
+      break;
+    }
   }
 }
 void selectSort(int item, int sort){
   int max = 0, i = 0;
   struct DATA temp;
 
-  for ( i = 0; i < ELEMENTS; i++){
+  for (i = 0; i < ELEMENTS; i++){
     int max = i;
     for (int j = i; j < ELEMENTS; j++){
-      if(m[max].area < m[j].area){
-        max = j;
+      switch (item){
+        case 1:
+          if(m[max].area < m[j].area){max = j;}
+          break;
+        case 2:
+          if(m[max].population < m[j].population){max = j;}
+          break;
+        case 3:
+          if(m[max].rate < m[j].rate){max = j;}
+          break;
+        case 4:
+          if(m[max].age < m[j].age){max = j;}
+          break;
+        case 5:
+          if(m[max].unemployment < m[j].unemployment){max = j;}
+          break;
+        case 6:
+          if(m[max].income < m[j].income){max = j;}
+          break;
+        default:
+          break;
       }
     }
-    printf("%d. %s:%.2f -> %s: %.2f\n", i, m[max].city, m[max].area, m[i].city, m[i].area);
     temp = m[i];
     m[i] = m[max];
     m[max] = temp;
   }
 }
-int isItem(){
-  int item, sort;
-  printf("------ソートする項目を選択してください------\n");
-  printf("1 : 面積順\n");
-  printf("2 : 人口\n");
-  printf("3 : 増加率\n");
-  printf("4 : 平均年齢\n");
-  printf("5 : 完全失業率\n");
-  printf("6 : 所得\n");
-  printf("コマンド：");
-  scanf("%d", &item);
-  printf("\n");
+int isItem(int *item, int *sort){
+  while (1){
+    printf("------ソートする項目を選択してください------\n");
+    printf("1 : 面積順\n");
+    printf("2 : 人口\n");
+    printf("3 : 増加率\n");
+    printf("4 : 平均年齢\n");
+    printf("5 : 完全失業率\n");
+    printf("6 : 所得\n");
+    printf("コマンド：");    
+    scanf("%d", item);
+    printf("\n");
 
-  printf("--ソートする順を選択してください------\n");
-  printf("0 : 昇順\n");
-  printf("1 : 降順\n");
-  scanf("%d", &sort);
+    if (1 <= *item && *item <= 6){
+      printf("--ソートする順を選択してください------\n");
+      printf("0 : 昇順\n");
+      printf("1 : 降順\n");
+      printf("コマンド：");
+      scanf("%d", sort);
 
-  sort = (sort ? -1 : 1);
+      *sort = (sort ? -1 : 1);
 
-  return (item, sort);
+      return 0;
+    }else{
+      break;
+    }
+  }
 }
 int search(char *CityName){
   for (int i = 0; i < ELEMENTS; i++){
