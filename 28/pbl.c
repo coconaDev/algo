@@ -26,6 +26,7 @@ void show();
 int isItem();   // ソート項目とソート順の入力
 void selectSort();  // 選択ソート
 void showList();
+
 int main(void){
   strageData();
   // メニュー選択
@@ -89,28 +90,29 @@ void showList(int item){
 void selectSort(int item, int sort){
   int max = 0, i = 0;
   struct DATA temp;
+  printf("%d", sort);
 
   for (i = 0; i < ELEMENTS; i++){
     int max = i;
     for (int j = i; j < ELEMENTS; j++){
       switch (item){
         case 1:
-          if(m[max].area < m[j].area){max = j;}
+          if((m[max].area * sort) < (m[j].area * sort)){max = j;}
           break;
         case 2:
-          if(m[max].population < m[j].population){max = j;}
+          if((m[max].population * sort) < (m[j].population * sort)){max = j;}
           break;
         case 3:
-          if(m[max].rate < m[j].rate){max = j;}
+          if((m[max].rate * sort) < (m[j].rate * sort)){max = j;}
           break;
         case 4:
-          if(m[max].age < m[j].age){max = j;}
+          if((m[max].age * sort) < (m[j].age * sort)){max = j;}
           break;
         case 5:
-          if(m[max].unemployment < m[j].unemployment){max = j;}
+          if((m[max].unemployment * sort) < (m[j].unemployment * sort)){max = j;}
           break;
         case 6:
-          if(m[max].income < m[j].income){max = j;}
+          if((m[max].income * sort) < (m[j].income * sort)){max = j;}
           break;
         default:
           break;
@@ -141,7 +143,7 @@ int isItem(int *item, int *sort){
       printf("コマンド：");
       scanf("%d", sort);
 
-      *sort = (sort ? -1 : 1);
+      *sort = ((*sort == 0) ? -1 : 1);
 
       return 0;
     }else{
