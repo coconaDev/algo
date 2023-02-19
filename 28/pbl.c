@@ -6,7 +6,7 @@
 #define ELEMENTS 42 // 要素数
 
 // データ構造定義
-struct DATA{
+typedef struct DATA{
   float area; // 面積
   float population; // 人口
   float rate; // 人口増加率
@@ -14,7 +14,7 @@ struct DATA{
   float unemployment; // 完全失業率
   float income; // 所得
   char city[30]; // 市町村名
-};
+}DATA;
 // 構造体配列
 struct DATA m[ELEMENTS];
 
@@ -90,7 +90,6 @@ void showList(int item){
 void selectSort(int item, int sort){
   int max = 0, i = 0;
   struct DATA temp;
-  printf("%d", sort);
 
   for (i = 0; i < ELEMENTS; i++){
     int max = i;
